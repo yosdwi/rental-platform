@@ -16,10 +16,10 @@ Repository and Obsidian foundation setup.
 | --- | --- | --- | --- |
 | Product thesis and research | Primary agent | Done | [[docs/01-product/PRODUCT-THESIS]] |
 | Obsidian/GitHub operating model | Primary agent | In progress | This setup |
-| BookCars baseline audit | Unassigned | Next | Create issue |
-| Customer storefront UX | Unassigned | Next | Use [[docs/05-flows/CORE-RENTAL-FLOW]] |
-| Owner command center UX | Unassigned | Next | Use [[docs/04-design-system/DESIGN-SYSTEM]] |
-| Domain/API contract | Unassigned | Next | Use [[docs/01-product/CORE-RENTAL-MODEL]] |
+| BookCars baseline audit | Unassigned | Next | [Issue #1](https://github.com/yosdwi/rental-platform/issues/1) |
+| Customer storefront UX | Unassigned | Next | [Issue #2](https://github.com/yosdwi/rental-platform/issues/2) |
+| Owner command center UX | Unassigned | Next | [Issue #3](https://github.com/yosdwi/rental-platform/issues/3) |
+| Domain/API contract | Unassigned | Next | [Issue #4](https://github.com/yosdwi/rental-platform/issues/4) |
 
 ## How to update
 
