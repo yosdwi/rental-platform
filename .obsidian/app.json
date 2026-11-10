@@ -1,0 +1,9 @@
+{
+  "livePreview": true,
+  "showLineNumber": true,
+  "foldHeading": true,
+  "foldIndent": true,
+  "alwaysUpdateLinks": true,
+  "newFileLocation": "folder",
+  "newFileFolderPath": "docs/07-agent-ops"
+}
