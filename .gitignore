@@ -8,3 +8,13 @@ coverage/
 .DS_Store
 Thumbs.db
 ego-rental-*.mjs
+
+# app
+node_modules/
+.next/
+next-env.d.ts
+*.tsbuildinfo
+.env*.local
+.vercel
+/screens/
+/public/maplibre/

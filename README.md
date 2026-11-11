@@ -15,6 +15,25 @@ Repository ini juga berfungsi sebagai **Obsidian vault**. Semua product thinking
 - [[docs/06-roadmap/DEMO-VERTICAL-SLICE]] — scope demo aktif
 - [[docs/07-agent-ops/README]] — cara kerja multi-agent
 
+## Aplikasi demo (`demo/v1`)
+
+Aplikasi **lajur**: satu Next.js app untuk penyewa (`/beranda`) dan owner (`/mitra`). Lihat [[docs/06-roadmap/SPRINT-01-DEMO-PRD]] dan [[docs/06-roadmap/DEMO-SCRIPT]].
+
+```bash
+npm install
+npm run dev        # http://localhost:3000
+npm run build
+```
+
+Opsional `.env.local` (lihat `.env.example`): `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`, `NEXT_PUBLIC_SYNC_ROOM`. Tanpa env, aplikasi memakai project Supabase default untuk sinkron antar HP (Realtime Broadcast, tanpa tabel).
+
+Struktur:
+
+- `src/app/(sewa)` — layar penyewa; `src/app/mitra` — layar owner; `src/app/masuk` — masuk.
+- `src/lib/domain` — model, data contoh GSM Bogor (`fixtures.ts`), harga, ketersediaan, servis, asisten deterministik.
+- `src/lib/store` — event store, reducer, sinkron.
+- `src/components` — UI, peta, panel skenario tersembunyi (tekan lama logo).
+
 ## Prinsip kerja
 
 1. Satu Rental Session menjadi penghubung booking, motor, customer, lokasi, geofence, return, dan maintenance.

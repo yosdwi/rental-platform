@@ -1,0 +1,119 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans Variable", ui-sans-serif, system-ui, sans-serif;
+
+  --color-brand: #1e2a78;
+  --color-brand-700: #151d5a;
+  --color-brand-500: #2d3a92;
+  --color-brand-300: #8d95cf;
+  --color-brand-soft: #ebedf8;
+
+  --color-canvas: #f3f4f9;
+  --color-surface: #ffffff;
+  --color-ink: #14172b;
+  --color-ink-2: #3a3e55;
+  --color-muted: #6b6f85;
+  --color-faint: #a3a7ba;
+  --color-line: #e4e6ef;
+  --color-line-strong: #d3d6e3;
+
+  --color-ok: #1f7a4d;
+  --color-ok-soft: #e4f3ea;
+  --color-info: #0e6e8c;
+  --color-info-soft: #e0f1f6;
+  --color-warn: #b4610e;
+  --color-warn-soft: #fbefdc;
+  --color-danger: #c0362c;
+  --color-danger-soft: #fce9e7;
+  --color-check: #6941c6;
+  --color-check-soft: #f0eafd;
+  --color-maint: #55575f;
+  --color-maint-soft: #ecedf1;
+  --color-wa: #1a9e52;
+
+  --radius-card: 22px;
+  --radius-field: 14px;
+
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+
+  --animate-pulse-ring: pulse-ring 1.8s var(--ease-out) infinite;
+  --animate-shimmer: shimmer 1.4s linear infinite;
+
+  @keyframes pulse-ring {
+    0% { transform: scale(0.8); opacity: 0.55; }
+    100% { transform: scale(2.4); opacity: 0; }
+  }
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+}
+
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    @apply bg-canvas text-ink font-sans antialiased;
+    font-feature-settings: "ss01", "cv11";
+    overscroll-behavior-y: none;
+  }
+  button, [role="button"] { cursor: pointer; touch-action: manipulation; }
+  input, textarea, select { font-size: 16px; }
+  ::selection { background: var(--color-brand-soft); }
+}
+
+@layer components {
+  .press {
+    transition: transform 160ms var(--ease-out), background-color 160ms var(--ease-out),
+      box-shadow 160ms var(--ease-out), opacity 160ms var(--ease-out);
+  }
+  .press:active { transform: scale(0.97); }
+
+  .num { font-variant-numeric: tabular-nums; }
+
+  .dots {
+    background-image: radial-gradient(rgba(255, 255, 255, 0.09) 1px, transparent 1.2px);
+    background-size: 14px 14px;
+  }
+
+  .shimmer {
+    background: linear-gradient(90deg, var(--color-line) 0%, #f5f6fb 50%, var(--color-line) 100%);
+    background-size: 200% 100%;
+    animation: var(--animate-shimmer);
+  }
+
+  .hide-scrollbar { scrollbar-width: none; }
+  .hide-scrollbar::-webkit-scrollbar { display: none; }
+
+  .pb-safe { padding-bottom: max(env(safe-area-inset-bottom), 12px); }
+  .pt-safe { padding-top: max(env(safe-area-inset-top), 0px); }
+
+  .card { @apply bg-surface rounded-[var(--radius-card)] border border-line; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* MapLibre: tone down chrome */
+.maplibregl-ctrl-attrib { font-size: 10px; background: rgba(255, 255, 255, 0.7) !important; }
+.maplibregl-ctrl-attrib a { color: var(--color-muted); }
+.maplibregl-ctrl-group { border-radius: 14px !important; box-shadow: 0 1px 2px rgba(20, 23, 43, 0.08) !important; }
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.8); opacity: 0.55; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
