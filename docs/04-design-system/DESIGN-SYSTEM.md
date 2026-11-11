@@ -1,7 +1,7 @@
 ---
 title: Rental Design System
 type: design-system
-status: v0.1
+status: v0.2
 ---
 
 # Rental Design System
@@ -14,48 +14,58 @@ Fondasi ini sengaja tipis. Ia menjadi guardrail agar vertical slice konsisten, b
 
 Owner harus merasa sistem membantu mengambil tindakan. Customer harus merasa booking aman dan mudah dipahami.
 
-## Visual direction
+## Visual direction (v0.2 — mengikuti referensi "Skyward")
 
-- Light operational canvas.
-- Surface putih dengan border slate yang ringan.
-- Trust blue untuk primary action.
-- Orange/amber untuk attention dan tracking.
-- Green untuk ready/success.
-- Red hanya untuk risk, breach, atau destructive action.
-- Hindari glassmorphism berat, dashboard gelap seperti telematics console, dan grafik dekoratif.
+- Brand **navy** untuk header, tombol utama, dan tab aktif; kanvas abu kebiruan terang; kartu putih radius besar.
+- Header navy bertekstur titik halus dengan kartu pencarian yang menumpuk di atasnya.
+- **Kartu tiket** (sobekan + QR) untuk sewa penyewa.
+- Navigasi **pill mengambang** + tombol bulat (Tiket untuk penyewa, Pindai untuk owner).
+- Warna status hanya untuk status; merah hanya untuk risiko/pelanggaran.
+- Tanpa paragraf penjelasan: label 1–3 kata, angka, dan status yang menjelaskan.
+- Ilustrasi motor flat buatan sendiri (`MotorArt`), warna mengikuti unit.
 
-## Tokens v0.1
+## Tokens v0.2
+
+Sumber: `src/app/globals.css` (`@theme`).
 
 ```css
---color-primary: #2563EB;
---color-primary-soft: #DBEAFE;
---color-attention: #F97316;
---color-success: #16A34A;
---color-danger: #DC2626;
---color-background: #F8FAFC;
---color-surface: #FFFFFF;
---color-text: #1E293B;
---color-muted: #64748B;
---color-border: #E2E8F0;
+--color-brand: #1e2a78;   --color-brand-soft: #ebedf8;
+--color-canvas: #f3f4f9;  --color-surface: #ffffff;
+--color-ink: #14172b;     --color-muted: #6b6f85;  --color-line: #e4e6ef;
+--color-ok: #1f7a4d;      --color-info: #0e6e8c;   --color-warn: #b4610e;
+--color-danger: #c0362c;  --color-check: #6941c6;  --color-maint: #55575f;
+--radius-card: 22px;      --radius-field: 14px;
+--ease-out: cubic-bezier(0.23, 1, 0.32, 1);
 ```
 
-Typography: `Plus Jakarta Sans` sebagai satu family utama untuk heading, body, angka, dan UI.
+Typography: `Plus Jakarta Sans` (variable, self-hosted via fontsource), angka memakai tabular figures (`.num`).
 
 ## Status vocabulary
 
-Status harus konsisten di customer, owner, map, dan maintenance:
+Kode tetap bahasa Inggris; label UI bahasa Indonesia (`src/lib/domain/status.ts`):
 
-- `Ready` — siap disewakan
-- `Reserved` — sudah dipesan
-- `Active` — sedang disewa
-- `Due back` — mendekati/jatuh tempo pengembalian
-- `Inspection` — menunggu pemeriksaan
-- `Maintenance` — tidak tersedia karena service/perbaikan
-- `Alert` — butuh perhatian owner
+| Kode | Label | Warna |
+| --- | --- | --- |
+| `ready` | Siap | hijau |
+| `reserved` | Dipesan | biru laut |
+| `active` | Disewa | navy |
+| `due` | Segera kembali | amber |
+| `overdue` | Terlambat | merah |
+| `inspection` | Cek kondisi | ungu |
+| `maintenance` | Servis | abu |
+
+Istilah UI: Zona (bukan geofence), Sewa (bukan rental session), Serah terima, Pengembalian, Cek kondisi.
+
+## Motion
+
+- 150–300 ms, `ease-out` kustom; spring ringan untuk tab dan sheet.
+- Tombol mengecil 3% saat ditekan; bottom sheet bisa diseret (vaul).
+- Marker peta bergerak halus (tween 900 ms), cincin berdenyut untuk peringatan.
+- `prefers-reduced-motion` dihormati.
 
 Warna tidak boleh menjadi satu-satunya pembeda; selalu sertakan label atau icon.
 
-## Component inventory
+## Component inventory (status implementasi demo)
 
 - `RentalStatusChip`
 - `ActionQueue`
